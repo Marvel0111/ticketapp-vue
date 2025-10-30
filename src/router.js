@@ -1,4 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router'
+// src/router.js (Modified Content)
+
+import { createRouter, createWebHashHistory } from 'vue-router' // 👈 Change import to createWebHashHistory
 import Home from './pages/Landing.vue'
 import Login from './pages/auth/Login.vue'
 import Signup from './pages/auth/Signup.vue'
@@ -14,7 +16,11 @@ const routes = [
   { path: '/tickets', component: Tickets, meta: { requiresAuth: true } },
 ]
 
-const router = createRouter({ history: createWebHistory(), routes })
+const router = createRouter({ 
+  // 👈 Use Hash History for GitHub Pages compatibility
+  history: createWebHashHistory(), 
+  routes 
+})
 
 router.beforeEach((to, from, next) => {
   const auth = useAuth()
@@ -25,4 +31,4 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
-export default router
+export default router 
